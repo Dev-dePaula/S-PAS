@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAS</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --border-color: #333;
+            --risk-color: rgba(220, 53, 69, 0.6); /* Vermelho para risco */
+            --stable-color: rgba(40, 167, 69, 0.5); /* Verde para estável */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #e9ecef;
+        }
+
+        /* Estilo da Folha A4 */
+        .page {
+            width: 210mm;
+            /* Altura mínima removida para permitir expansão pelo conteúdo */
+            padding: 10mm;
+            margin: 10px auto;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* Cabeçalhos e Títulos */
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+        }
+
+        .logo-area { font-weight: bold; font-size: 26px; letter-spacing: 5px; color: #444; }
+
+        h1.main-title {
+            font-size: 18px; font-weight: bold; text-transform: uppercase;
+            margin: 15px 0; background-color: #d6d8db; padding: 8px;
+            border: 1px solid var(--border-color); text-align: center;
+        }
+
+        h2.section-title {
+            font-size: 14px; font-weight: bold; background-color: #e2e6ea;
+            padding: 5px; border: 1px solid var(--border-color);
+            margin: 20px 0 5px 0; text-align: center; text-transform: uppercase;
+        }
+
+        /* Tabelas e Inputs */
+        table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+        th, td { border: 1px solid var(--border-color); padding: 5px; font-size: 12px; text-align: left; vertical-align: top; }
+        th { background-color: #f8f9fa; font-weight: bold; text-align: center;}
+
+        input[type="text"], textarea, select.inline-input {
+            width: 98%; border: none; outline: none; font-family: inherit;
+            font-size: 12px; background: transparent; resize: none;
+        }
+        textarea { overflow: hidden; min-height: 20px; }
+
+        .label { font-weight: bold; font-size: 11px; margin-right: 5px; text-transform: uppercase; color: #555; }
+
+        /* Área do Gráfico e Avaliação Quantitativa */
+        .rating-select {
+            float: right; font-size: 11px; padding: 2px; border: 1px solid #ccc;
+            border-radius: 4px; background-color: #fff; cursor: pointer;
+        }
+        .chart-wrapper {
+            display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 20px;
+            border: 1px solid var(--border-color); padding: 10px; background: #fff;
+        }
+        .chart-box { flex: 1; min-width: 300px; display: flex; justify-content: center; align-items: center;}
+        .perception-box { flex: 2; min-width: 300px; }
+        .chart-container { position: relative; height: 250px; width: 250px; }
+
+        /* Botão de Impressão */
+        #print-btn {
+            position: fixed; bottom: 30px; right: 30px; padding: 15px 25px;
+            background-color: #007bff; color: white; border: none; border-radius: 50px;
+            cursor: pointer; font-size: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            z-index: 1000; transition: background-color 0.3s;
+        }
+        #print-btn:hover { background-color: #0056b3; }
+
+        /* Configurações de Impressão */
+        @media print {
+            body { background: none; padding: 0; }
+            .page { margin: 0; box-shadow: none; width: 100%; padding: 5mm; border: none; }
+            #print-btn, .rating-select { display: none !important; } /* Esconde botão e notas na impressão */
+            textarea, input, select { border: none; }
+            h1.main-title, h2.section-title, th { background-color: #f0f0f0 !important; -webkit-print-color-adjust: exact; }
+             /* Força a quebra de página se necessário para não cortar seções ao meio */
+            .section-container { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+<button id="print-btn" onclick="window.print()">🖨️ Imprimir PAS</button>
+
+<div class="page">
+    <header>
+        <div class="logo-area">S☺L</div>
+        <div style="font-size: 11px;">Comunidade Solidariedade - SOL</div>
+        <div style="font-size: 09px;">"Unindo Forças,Resgatando Vidas"</div>
+        <div style="font-size: 09px;">CNPJ: 03.836.151/0001-72  Unidade Publica lei 9.883</div>
+    </header>
+
+    <h1 class="main-title">Plano de Atendimento Singular - PAS</h1>
+
+    <div class="section-container">
+        <table>
+            <tr>
+                <td colspan="2"><span class="label">Técnico Responsável:</span><input type="text" value="KÁTIA FERNANDA RIBEIRO DA COSTA"></td>
+                <td><span class="label">Data Hoje:</span><input type="text" placeholder="DD/MM/AAAA"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><span class="label">Nome Acolhido:</span><input type="text"></td>
+                <td><span class="label">Data Acolhimento:</span><input type="text"></td>
+            </tr>
+            <tr>
+                <td><span class="label">Tempo no Acolhimento:</span><input type="text"></td>
+                <td><span class="label">Fase Atual:</span><input type="text"></td>
+                <td><span class="label">Previsão de Alta:</span><input type="text"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section-container">
+        <h2 class="section-title">Alteração Medicamentosa</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>MEDICAMENTO</th>
+                    <th width="15%">MANHÃ</th>
+                    <th width="15%">TARDE</th>
+                    <th width="15%">NOITE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+                <tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+                <tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+            </tbody>
+        </table>
+        <div style="border: 1px solid var(--border-color); padding: 5px; margin-top: -11px; border-top: none;">
+            <span class="label">Observações:</span>
+            <textarea rows="2"></textarea>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <h2 class="section-title">Planejamento das Atividades</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ATIVIDADES</th>
+                    <th width="50" align="center">PART.</th>
+                    <th width="50" align="center">DISP.</th>
+                    <th>PERIODICIDADE/OBS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Atendimento Psicológico Individual</td><td align="center"><input type="checkbox"></td><td align="center"><input type="checkbox"></td><td><input type="text"></td></tr>
+                <tr><td>Atendimento Sócio Assistencial Individual</td><td align="center"><input type="checkbox"></td><td align="center"><input type="checkbox"></td><td><input type="text"></td></tr>
+                <tr><td>Atendimento Psicossocial Grupal</td><td align="center"><input type="checkbox"></td><td align="center"><input type="checkbox"></td><td><input type="text"></td></tr>
+                <tr><td>Laborterapia / Manutenção</td><td align="center"><input type="checkbox"></td><td align="center"><input type="checkbox"></td><td><input type="text"></td></tr>
+                <tr><td>Grupos de Mútua-Ajuda (NA/AA) e 12 Passos</td><td align="center"><input type="checkbox"></td><td align="center"><input type="checkbox"></td><td><input type="text"></td></tr>
+                <tr><td>Atividades de Espiritualidade/Religiosidade</td><td align="center"><input type="checkbox"></td><td align="center"><input type="checkbox"></td><td><input type="text"></td></tr>
+                 <tr><td>Atividades Físicas e Desportivas</td><td align="center"><input type="checkbox"></td><td align="center"><input type="checkbox"></td><td><input type="text"></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+     <div class="section-container">
+        <h2 class="section-title">Percepção Sobre as Áreas da Vida (Análise de Risco)</h2>
+        <p style="font-size: 11px; font-style: italic; text-align: center; margin: 5px 0;">
+            Utilize os seletores (1=Crítico a 5=Ótimo) para gerar o gráfico de risco. O gráfico não será impresso.
+        </p>
+
+        <div class="chart-wrapper">
+             <div class="chart-box">
+                <div class="chart-container">
+                    <canvas id="riskRadarChart"></canvas>
+                </div>
+            </div>
+
+            <div class="perception-box">
+                <table>
+                    <tr>
+                        <td>
+                            <span class="label">Emocional:</span>
+                            <select class="rating-select" data-area="emocional">
+                                <option value="1">1-Crítico</option>
+                                <option value="2" selected>2-Ruim</option>
+                                <option value="3">3-Regular</option>
+                                <option value="4">4-Bom</option>
+                                <option value="5">5-Ótimo</option>
+                            </select>
+                            <textarea rows="2" placeholder="Ex: Explosivo, baixa paciência..."></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="label">Física/Saúde:</span>
+                            <select class="rating-select" data-area="fisica">
+                                <option value="1">1-Crítico</option>
+                                <option value="2">2-Ruim</option>
+                                <option value="3">3-Regular</option>
+                                <option value="4" selected>4-Bom</option>
+                                <option value="5">5-Ótimo</option>
+                            </select>
+                            <textarea rows="2" placeholder="Ex: Boa disposição, sem queixas..."></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="label">Social/Relacional:</span>
+                            <select class="rating-select" data-area="social">
+                                <option value="1">1-Crítico</option>
+                                <option value="2" selected>2-Ruim</option>
+                                <option value="3">3-Regular</option>
+                                <option value="4">4-Bom</option>
+                                <option value="5">5-Ótimo</option>
+                            </select>
+                            <textarea rows="2" placeholder="Ex: Dificuldade em grupo..."></textarea>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td>
+                            <span class="label">Espiritual:</span>
+                            <select class="rating-select" data-area="espiritual">
+                                <option value="1">1-Crítico</option>
+                                <option value="2">2-Ruim</option>
+                                <option value="3" selected>3-Regular</option>
+                                <option value="4">4-Bom</option>
+                                <option value="5">5-Ótimo</option>
+                            </select>
+                            <textarea rows="2" placeholder="Ex: Participa dos ritos..."></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="label">Profissional/Acadêmica:</span>
+                            <select class="rating-select" data-area="profissional">
+                                <option value="1">1-Crítico</option>
+                                <option value="2">2-Ruim</option>
+                                <option value="3" selected>3-Regular</option>
+                                <option value="4">4-Bom</option>
+                                <option value="5">5-Ótimo</option>
+                            </select>
+                            <textarea rows="2" placeholder="Ex: Ensino médio completo..."></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <h2 class="section-title">Projeto de Vida / Metas</h2>
+        <div style="border: 1px solid var(--border-color); padding: 5px;">
+            <textarea rows="4" placeholder="Descrever metas a serem realizadas...&#10;1- ...&#10;2- ...&#10;3- ..."></textarea>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <h2 class="section-title">Fatores de Risco e Proteção</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th width="50%">FATORES DE RISCO (Gatilhos)</th>
+                    <th width="50%">FATORES DE PROTEÇÃO (Manutenção)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><textarea rows="5" placeholder="1. Relacionamento amoroso&#10;2. Ociosidade&#10;3. Festas..."></textarea></td>
+                    <td><textarea rows="5" placeholder="1. Frequentar grupos religiosos&#10;2. Contato familiar&#10;3. Prática de esportes..."></textarea></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+     <div class="section-container">
+        <h2 class="section-title">Considerações do Profissional</h2>
+        <div style="border: 1px solid var(--border-color); padding: 5px;">
+            <textarea rows="4" placeholder="Avaliar empenho, dificuldades no cumprimento das metas, etc..."></textarea>
+        </div>
+    </div>
+
+
+   <div class="section-container">
+        <h2 class="section-title"></h2>
+        <div style="border: 1px solid var(--border-color); padding: 5px;">
+        <textarea rows="4" placeholder="Eu_______________________,acolhido (a), nesta Comunidade Terapeutica,participei ativamente das respostas contidas no PAS.Afirmo que as informações fornecidas são verdadeiras e que estou de pleno acordo com a proposta terapêutica planejada."></textarea>
+    <div style="margin-top: 40px; margin-bottom: 20px; text-align: center; page-break-inside: avoid;">
+        <div style="width: 350px; border-top: 1px solid #000; margin: 0 auto;"></div>
+        <span class="label">Assinatura do Acolhido (Concordância com o PAS)</span>
+    </div>
+        </div>
+    </div>
+
+</div> <script>
+    // --- 1. Script para auto-expandir os textareas ---
+    function autoResize() {
+        this.style.height = 'auto';
+        this.style.height = this.scrollHeight + 'px';
+    }
+    document.querySelectorAll('textarea').forEach(textarea => {
+        textarea.addEventListener('input', autoResize);
+        // Chama uma vez no início para ajustar se já houver texto
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+    });
+
+    // --- 2. Script do Gráfico Radar (Chart.js) ---
+    const ctx = document.getElementById('riskRadarChart').getContext('2d');
+
+    // Dados iniciais baseados nos selects
+    let chartData = {
+        labels: ['Emocional', 'Física/Saúde', 'Social', 'Espiritual', 'Profissional'],
+        datasets: [{
+            label: 'Nível de Estabilidade (Quanto menor, maior o risco)',
+            data: [2, 4, 2, 3, 3], // Valores iniciais dos selects
+            backgroundColor: 'rgba(54, 162, 235, 0.2)', // Azul padrão
+            borderColor: 'rgba(54, 162, 235, 1)',
+            pointBackgroundColor: ['red', 'green', 'red', 'orange', 'orange'], // Cores dinâmicas dos pontos
+            borderWidth: 2,
+            pointRadius: 4
+        }]
+    };
+
+    // Configuração do Gráfico
+    let riskChart = new Chart(ctx, {
+        type: 'radar',
+        data: chartData,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                r: {
+                    angleLines: { display: false },
+                    suggestedMin: 0,
+                    suggestedMax: 5, // Nota máxima é 5
+                    ticks: { stepSize: 1, backdropColor: 'transparent' },
+                    pointLabels: { font: { size: 11, weight: 'bold' } }
+                }
+            },
+            plugins: {
+                legend: { display: false } // Esconde a legenda para economizar espaço
+            }
+        }
+    });
+
+    // Função para atualizar o gráfico quando um seletor muda
+    function updateChart() {
+        const selects = document.querySelectorAll('.rating-select');
+        let newScores = [];
+        let newColors = [];
+        let totalScore = 0;
+
+        selects.forEach(select => {
+            let score = parseInt(select.value);
+            newScores.push(score);
+            totalScore += score;
+
+            // Define a cor do ponto baseado na nota (Risco vs Estável)
+            if(score <= 2) newColors.push('red'); // Risco Crítico
+            else if(score === 3) newColors.push('orange'); // Alerta
+            else newColors.push('green'); // Estável
+        });
+
+        // Atualiza os dados do gráfico
+        riskChart.data.datasets[0].data = newScores;
+        riskChart.data.datasets[0].pointBackgroundColor = newColors;
+
+        // Muda a cor de fundo do gráfico se a média for muito baixa (Indicador Geral de Risco)
+        let averageScore = totalScore / selects.length;
+        if (averageScore < 2.5) {
+            riskChart.data.datasets[0].backgroundColor = 'rgba(220, 53, 69, 0.4)'; // Fundo Vermelho
+            riskChart.data.datasets[0].borderColor = 'red';
+        } else {
+            riskChart.data.datasets[0].backgroundColor = 'rgba(54, 162, 235, 0.2)'; // Fundo Azul
+            riskChart.data.datasets[0].borderColor = 'rgba(54, 162, 235, 1)';
+        }
+
+        riskChart.update();
+    }
+
+    // Adiciona o evento de "mudar" (change) a todos os seletores de nota
+    document.querySelectorAll('.rating-select').forEach(select => {
+        select.addEventListener('change', updateChart);
+    });
+
+    // Chama a atualização na primeira carga
+    updateChart();
+
+</script>
+
+</body>
+</html>

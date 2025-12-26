@@ -12,6 +12,7 @@ body {
   page-break-after: always;
 }
 
+
 .center {
   text-align: center;
 }
@@ -97,3 +98,4 @@ textarea {
     padding: 15mm;
   }
 }
+

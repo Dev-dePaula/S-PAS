@@ -2,141 +2,67 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>PAS - Plano de Atendimento Singular</title>
+  <title>PAS – Plano de Atendimento Singular</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<!-- BOTÃO DE IMPRESSÃO -->
-<div class="print-area">
-  <button onclick="imprimir()">🖨️ Imprimir / Gerar PDF</button>
-</div>
+  <h1>PLANO DE ATENDIMENTO SINGULAR – PAS</h1>
 
-<div class="page">
-
-  <header class="center">
-    <h1>SOL</h1>
-    <p>Comunidade Solidariedade - SOL</p>
-    <p class="small">PLANO DE ATENDIMENTO SINGULAR - PAS</p>
-  </header>
-
-  <table class="table">
-    <tr>
-      <td colspan="3"><strong>TÉCNICO RESPONSÁVEL:</strong> <input></td>
-      <td><strong>DATA:</strong> <input type="date"></td>
-    </tr>
-    <tr class="gray">
-      <td colspan="4"><strong>IDENTIFICAÇÃO DO ACOLHIDO</strong></td>
-    </tr>
-    <tr>
-      <td colspan="2"><strong>NOME:</strong> <input></td>
-      <td><strong>DATA DO ACOLHIMENTO:</strong> <input type="date"></td>
-      <td><strong>TEMPO PREVISTO:</strong> <input></td>
-    </tr>
-    <tr>
-      <td><strong>TEMPO DE ACOLHIMENTO:</strong> <input></td>
-      <td><strong>FASE:</strong> <input></td>
-      <td colspan="2"><strong>EDUCADOR DE REFERÊNCIA:</strong> <input></td>
-    </tr>
-    <tr>
-      <td colspan="4"><strong>CELULAR:</strong> <input></td>
-    </tr>
-  </table>
-
-  <h2>PLANEJAMENTO DAS ATIVIDADES</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>ATIVIDADES</th>
-        <th>PARTICIPA</th>
-        <th>DISPENSADO</th>
-        <th>PERIODICIDADE</th>
-      </tr>
-    </thead>
-    <tbody id="atividades"></tbody>
-  </table>
-
-  <h2>ENCAMINHAMENTOS E REFERENCIAMENTOS</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th></th>
-        <th>REALIZADO</th>
-        <th>PENDENTE</th>
-        <th>EM ANDAMENTO</th>
-      </tr>
-    </thead>
-    <tbody id="encaminhamentos"></tbody>
-  </table>
-
-  <h2>VÍNCULOS FAMILIARES E/OU REDE DE APOIO</h2>
-  <textarea rows="4"></textarea>
-
-</div>
-
-<!-- PÁGINA 2 -->
-<div class="page">
-
-  <h2>REQUERIMENTOS E SOLICITAÇÕES DO ACOLHIDO</h2>
-  <textarea rows="2"></textarea>
-
-  <h2>ALTERAÇÃO MEDICAMENTOSA</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>MEDICAMENTO</th>
-        <th>MANHÃ</th>
-        <th>TARDE</th>
-        <th>NOITE</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td><input></td><td><input></td><td><input></td><td><input></td></tr>
-      <tr><td><input></td><td><input></td><td><input></td><td><input></td></tr>
-    </tbody>
-  </table>
-
-  <strong>OBSERVAÇÕES:</strong>
-  <textarea rows="2"></textarea>
-
-  <h2>PERCEPÇÃO SOBRE AS ÁREAS DA VIDA</h2>
-  <textarea rows="6"></textarea>
-
-  <h2>PROJETO DE VIDA</h2>
-  <textarea rows="4"></textarea>
-
-  <h2>FATORES DE RISCO E PROTEÇÃO</h2>
-  <table class="table">
-    <tr>
-      <th>FATORES DE RISCO</th>
-      <th>FATORES DE PROTEÇÃO</th>
-    </tr>
-    <tr>
-      <td><textarea rows="3"></textarea></td>
-      <td><textarea rows="3"></textarea></td>
-    </tr>
-  </table>
-
-</div>
-
-<!-- PÁGINA 3 -->
-<div class="page">
-
-  <h2>CONSIDERAÇÕES DO PROFISSIONAL</h2>
-  <textarea rows="4"></textarea>
-
-  <div class="assinatura">
-    <p>
-      Eu, ________________________________, acolhido(a), nesta Comunidade Terapêutica,
-      participei ativamente das respostas contidas no PAS. Afirmo que as informações
-      fornecidas são verdadeiras e estou de pleno acordo com a proposta terapêutica planejada.
-    </p>
-    <br><br>
-    <p class="center">_____________________________________<br>Assinatura do acolhido</p>
+  <div class="acoes">
+    <button onclick="imprimirPAS()">Imprimir / Salvar em PDF</button>
   </div>
 
-</div>
+  <section>
+    <h2>Identificação do Acolhido</h2>
+    <label>Nome:</label>
+    <input type="text">
+    <label>Data de Nascimento:</label>
+    <input type="date">
+    <label>Data de Entrada:</label>
+    <input type="date">
+  </section>
 
-<script src="script.js"></script>
+  <section>
+    <h2>Histórico</h2>
+    <textarea rows="4"></textarea>
+  </section>
+
+  <section class="vinculos">
+    <h2>Vínculos Familiares</h2>
+    <textarea rows="4"></textarea>
+  </section>
+
+  <section>
+    <h2>Atividades Desenvolvidas</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Atividade</th>
+          <th>Sim</th>
+          <th>Não</th>
+          <th>Observações</th>
+        </tr>
+      </thead>
+      <tbody id="atividades"></tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Encaminhamentos</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Encaminhamento</th>
+          <th>Sim</th>
+          <th>Não</th>
+          <th>Em andamento</th>
+        </tr>
+      </thead>
+      <tbody id="encaminhamentos"></tbody>
+    </table>
+  </section>
+
+  <script src="script.js"></script>
 </body>
 </html>

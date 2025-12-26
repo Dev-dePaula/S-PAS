@@ -4,9 +4,13 @@
   <meta charset="UTF-8">
   <title>PAS - Plano de Atendimento Singular</title>
   <link rel="stylesheet" href="styles.css">
-  <!--<script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
 </head>
 <body>
+
+<!-- BOTÃO DE IMPRESSÃO -->
+<div class="print-area">
+  <button onclick="imprimir()">🖨️ Imprimir / Gerar PDF</button>
+</div>
 
 <div class="page">
 
@@ -16,7 +20,6 @@
     <p class="small">PLANO DE ATENDIMENTO SINGULAR - PAS</p>
   </header>
 
-  <!-- IDENTIFICAÇÃO -->
   <table class="table">
     <tr>
       <td colspan="3"><strong>TÉCNICO RESPONSÁVEL:</strong> <input></td>
@@ -40,7 +43,6 @@
     </tr>
   </table>
 
-  <!-- PLANEJAMENTO -->
   <h2>PLANEJAMENTO DAS ATIVIDADES</h2>
   <table class="table">
     <thead>
@@ -54,7 +56,6 @@
     <tbody id="atividades"></tbody>
   </table>
 
-  <!-- ENCAMINHAMENTOS -->
   <h2>ENCAMINHAMENTOS E REFERENCIAMENTOS</h2>
   <table class="table">
     <thead>
@@ -68,7 +69,6 @@
     <tbody id="encaminhamentos"></tbody>
   </table>
 
-  <!-- VÍNCULOS -->
   <h2>VÍNCULOS FAMILIARES E/OU REDE DE APOIO</h2>
   <textarea rows="4"></textarea>
 
@@ -117,10 +117,6 @@
     </tr>
   </table>
 
-  <!-- GRÁFICO (SUPORTE TÉCNICO) -->
-  <!--<h2>Análise Técnica (Gestão)</h2>
-  <canvas id="graficoRisco"></canvas> -->
-
 </div>
 
 <!-- PÁGINA 3 -->
@@ -144,4 +140,3 @@
 <script src="script.js"></script>
 </body>
 </html>
-

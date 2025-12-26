@@ -1,4 +1,4 @@
-function imprimir() {
+function imprimirPAS() {
   window.print();
 }
 
@@ -31,22 +31,26 @@ const encaminhamentos = [
   "Inserção no Mercado de Trabalho"
 ];
 
-document.getElementById("atividades").innerHTML =
-  atividades.map(a => `
+const atividadesBody = document.getElementById("atividades");
+atividades.forEach(item => {
+  atividadesBody.innerHTML += `
     <tr>
-      <td>${a}</td>
+      <td style="text-align:left">${item}</td>
       <td><input type="checkbox"></td>
       <td><input type="checkbox"></td>
-      <td><input></td>
+      <td><input type="text"></td>
     </tr>
-  `).join("");
+  `;
+});
 
-document.getElementById("encaminhamentos").innerHTML =
-  encaminhamentos.map(e => `
+const encBody = document.getElementById("encaminhamentos");
+encaminhamentos.forEach(item => {
+  encBody.innerHTML += `
     <tr>
-      <td>${e}</td>
+      <td style="text-align:left">${item}</td>
       <td><input type="checkbox"></td>
       <td><input type="checkbox"></td>
       <td><input type="checkbox"></td>
     </tr>
-  `).join("");
+  `;
+});

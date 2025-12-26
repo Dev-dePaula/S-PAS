@@ -7,93 +7,178 @@
 </head>
 <body>
 
+<div class="print-area">
+  <button onclick="imprimir()">🖨️ Imprimir / Gerar PDF</button>
+</div>
+
+<!-- PÁGINA 1 -->
 <div class="page">
 
-  <header class="header">
-    <h1>PLANO DE ATENDIMENTO SINGULAR - PAS</h1>
+  <header class="center">
+    <h1>SOL</h1>
+    <p>Comunidade Solidariedade - SOL</p>
+    <p class="small">PLANO DE ATENDIMENTO SINGULAR - PAS</p>
   </header>
 
-  <!-- IDENTIFICAÇÃO -->
+  <table class="table">
+    <tr>
+      <td colspan="3"><strong>TÉCNICO RESPONSÁVEL:</strong> <input></td>
+      <td><strong>DATA:</strong> <input type="date"></td>
+    </tr>
+    <tr class="gray">
+      <td colspan="4"><strong>IDENTIFICAÇÃO DO ACOLHIDO</strong></td>
+    </tr>
+    <tr>
+      <td colspan="2"><strong>NOME:</strong> <input></td>
+      <td><strong>DATA DO ACOLHIMENTO:</strong> <input type="date"></td>
+      <td><strong>TEMPO PREVISTO:</strong> <input></td>
+    </tr>
+    <tr>
+      <td><strong>TEMPO DE ACOLHIMENTO:</strong> <input></td>
+      <td><strong>FASE:</strong> <input></td>
+      <td colspan="2"><strong>EDUCADOR DE REFERÊNCIA:</strong> <input></td>
+    </tr>
+    <tr>
+      <td colspan="4"><strong>CELULAR:</strong> <input></td>
+    </tr>
+  </table>
+
+  <h2>PLANEJAMENTO DAS ATIVIDADES</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ATIVIDADES</th>
+        <th>PARTICIPA</th>
+        <th>DISPENSADO</th>
+        <th>PERIODICIDADE</th>
+      </tr>
+    </thead>
+    <tbody id="atividades"></tbody>
+  </table>
+
+  <h2>ENCAMINHAMENTOS E REFERENCIAMENTOS</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>REALIZADO</th>
+        <th>PENDENTE</th>
+        <th>EM ANDAMENTO</th>
+      </tr>
+    </thead>
+    <tbody id="encaminhamentos"></tbody>
+  </table>
+
+  <h2>VÍNCULOS FAMILIARES E/OU REDE DE APOIO</h2>
+  <textarea class="textarea-curto"></textarea>
+
+</div>
+
+<!-- PÁGINA 2 -->
+<div class="page">
+
+  <h2>REQUERIMENTOS E SOLICITAÇÕES DO ACOLHIDO</h2>
+  <textarea class="textarea-curto"></textarea>
+
+  <h2>ALTERAÇÃO MEDICAMENTOSA</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>MEDICAMENTO</th>
+        <th>MANHÃ</th>
+        <th>TARDE</th>
+        <th>NOITE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+      <tr><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+    </tbody>
+  </table>
+
+  <strong>OBSERVAÇÕES:</strong>
+  <textarea class="textarea-curto"></textarea>
+
+  <h2>PERCEPÇÃO SOBRE AS ÁREAS DA VIDA</h2>
+  <textarea class="textarea-medio"></textarea>
+
   <section class="secao">
-    <h2>IDENTIFICAÇÃO DO ACOLHIDO</h2>
+  <h2>PERCEPÇÃO SOBRE AS ÁREAS DA VIDA</h2>
+  <p class="subtitulo">(Como o acolhido avalia cada área, potencialidades e fragilidades)</p>
 
-    <div class="grid-2">
-      <div class="campo"><label>Nome:</label><input type="text"></div>
-      <div class="campo"><label>Data do Acolhimento:</label><input type="date"></div>
-    </div>
+  <div class="campo">
+    <label>Emocional:</label>
+    <textarea rows="2"></textarea>
+  </div>
 
-    <div class="grid-3">
-      <div class="campo"><label>Tempo de Acolhimento:</label><input type="text"></div>
-      <div class="campo"><label>Fase:</label><input type="text"></div>
-      <div class="campo"><label>Tempo Previsto:</label><input type="text"></div>
-    </div>
+  <div class="campo">
+    <label>Intelectual / Acadêmica:</label>
+    <textarea rows="2"></textarea>
+  </div>
 
-    <div class="campo"><label>Educador de Referência:</label><input type="text"></div>
-  </section>
+  <div class="campo">
+    <label>Física:</label>
+    <textarea rows="2"></textarea>
+  </div>
 
-  <!-- PERCEPÇÃO SOBRE AS ÁREAS DA VIDA -->
-  <section class="secao">
-    <h2>PERCEPÇÃO SOBRE AS ÁREAS DA VIDA</h2>
-    <p class="subtitulo">(Como o acolhido avalia cada área, potencialidades e fragilidades)</p>
+  <div class="campo">
+    <label>Afetiva (Relacionamentos íntimos):</label>
+    <textarea rows="2"></textarea>
+  </div>
 
-    <div class="campo"><label>Emocional:</label><textarea rows="2"></textarea></div>
-    <div class="campo"><label>Intelectual / Acadêmica:</label><textarea rows="2"></textarea></div>
-    <div class="campo"><label>Física:</label><textarea rows="2"></textarea></div>
-    <div class="campo"><label>Afetiva (Relacionamentos íntimos):</label><textarea rows="2"></textarea></div>
-    <div class="campo"><label>Espiritual:</label><textarea rows="2"></textarea></div>
-    <div class="campo"><label>Profissional:</label><textarea rows="2"></textarea></div>
-    <div class="campo"><label>Social / Lazer:</label><textarea rows="2"></textarea></div>
-  </section>
+  <div class="campo">
+    <label>Espiritual:</label>
+    <textarea rows="2"></textarea>
+  </div>
 
-  <!-- PROJETO DE VIDA -->
-  <section class="secao">
-    <h2>PROJETO DE VIDA</h2>
-    <textarea rows="4"></textarea>
-  </section>
+  <div class="campo">
+    <label>Profissional:</label>
+    <textarea rows="2"></textarea>
+  </div>
 
-  <!-- FATORES DE RISCO E PROTEÇÃO -->
-  <section class="secao">
-    <h2>FATORES DE RISCO E PROTEÇÃO</h2>
+  <div class="campo">
+    <label>Social / Lazer:</label>
+    <textarea rows="2"></textarea>
+  </div>
+</section>
 
-    <div class="grid-2">
-      <div>
-        <label>Fatores de Risco:</label>
-        <textarea rows="4"></textarea>
-      </div>
-      <div>
-        <label>Fatores de Proteção:</label>
-        <textarea rows="4"></textarea>
-      </div>
-    </div>
-  </section>
 
-  <!-- VÍNCULOS FAMILIARES -->
-  <section class="secao vinculos">
-    <h2>VÍNCULOS FAMILIARES E/OU REDE DE APOIO</h2>
-    <textarea rows="3"></textarea>
-  </section>
+  <h2>PROJETO DE VIDA</h2>
+  <textarea class="textarea-medio"></textarea>
 
-  <!-- CONSIDERAÇÕES -->
-  <section class="secao">
-    <h2>CONSIDERAÇÕES DO PROFISSIONAL</h2>
-    <textarea rows="3"></textarea>
-  </section>
+  <h2>FATORES DE RISCO E PROTEÇÃO</h2>
+  <table class="table">
+    <tr>
+      <th>FATORES DE RISCO</th>
+      <th>FATORES DE PROTEÇÃO</th>
+    </tr>
+    <tr>
+      <td><textarea class="textarea-curto"></textarea></td>
+      <td><textarea class="textarea-curto"></textarea></td>
+    </tr>
+  </table>
 
-  <!-- ASSINATURA -->
-  <section class="secao assinatura">
+</div>
+
+<!-- PÁGINA 3 -->
+<div class="page">
+
+  <h2>CONSIDERAÇÕES DO PROFISSIONAL</h2>
+  <textarea class="textarea-medio"></textarea>
+
+  <div class="assinatura">
     <p>
-      Eu, ____________________________________________, acolhido(a), declaro que participei
-      ativamente da construção deste PAS e concordo com a proposta terapêutica.
+      Eu, ________________________________, acolhido(a), nesta Comunidade Terapêutica,
+      participei ativamente das respostas contidas no PAS. Afirmo que as informações
+      fornecidas são verdadeiras e estou de pleno acordo com a proposta terapêutica planejada.
     </p>
 
-    <div class="linha-assinatura">
-      <span>Assinatura do Acolhido</span>
-    </div>
-  </section>
+    <br><br>
 
-  <!-- AÇÕES -->
-  <div class="acoes">
-    <button onclick="imprimirPAS()">Imprimir / Salvar em PDF</button>
+    <p class="center">
+      _____________________________________<br>
+      Assinatura do acolhido
+    </p>
   </div>
 
 </div>

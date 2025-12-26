@@ -1,83 +1,95 @@
 body {
   font-family: Arial, sans-serif;
-  background: #ccc;
-}
-
-.page {
-  width: 210mm;
-  min-height: 297mm;
-  background: #fff;
-  margin: 20px auto;
-  padding: 20px;
-  page-break-after: always;
-}
-
-.center {
-  text-align: center;
-}
-
-.small {
   font-size: 12px;
+  margin: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 h2 {
-  background: #e0e0e0;
-  padding: 5px;
-  font-size: 14px;
-  margin-top: 20px;
+  margin: 8px 0 4px;
+  font-size: 13px;
 }
 
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
+section {
+  margin-bottom: 10px;
 }
 
-.table th, .table td {
-  border: 1px solid #000;
-  padding: 5px;
-  font-size: 12px;
-}
-
-.gray {
-  background: #e0e0e0;
+label {
+  display: block;
+  margin-top: 4px;
 }
 
 input, textarea {
   width: 100%;
-  border: none;
-  outline: none;
+  box-sizing: border-box;
+  margin-bottom: 4px;
   font-size: 12px;
 }
 
 textarea {
-  resize: none;
+  resize: vertical;
 }
 
-/* BOTÃO */
-.print-area {
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 4px;
+}
+
+th, td {
+  border: 1px solid #000;
+  padding: 4px;
   text-align: center;
-  margin: 20px;
 }
 
-.print-area button {
-  padding: 10px 20px;
-  font-size: 16px;
+th {
+  background: #f0f0f0;
+}
+
+.vinculos textarea {
+  min-height: 60px;
+}
+
+/* Botão */
+.acoes {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 6px 12px;
   cursor: pointer;
 }
 
-/* IMPRESSÃO */
+/* ===== AJUSTES DE IMPRESSÃO ===== */
 @media print {
+
   body {
-    background: #fff;
+    margin: 10mm;
+    font-size: 11px;
   }
 
-  .print-area {
+  h1, h2 {
+    margin: 4px 0;
+  }
+
+  section {
+    margin-bottom: 6px;
+  }
+
+  table {
+    margin-bottom: 6px;
+  }
+
+  textarea {
+    min-height: 50px;
+  }
+
+  .acoes {
     display: none;
-  }
-
-  .page {
-    margin: 0;
-    box-shadow: none;
   }
 }

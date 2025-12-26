@@ -1,101 +1,104 @@
 body {
   font-family: Arial, sans-serif;
-  background: #ccc;
+  background: #eaeaea;
 }
 
 .page {
   width: 210mm;
   min-height: 297mm;
   background: #fff;
-  margin: 15px auto;
-  padding: 15px 18px;
-  page-break-after: always;
+  margin: 10mm auto;
+  padding: 12px 15px;
+  box-sizing: border-box;
 }
 
-
-.center {
+.header h1 {
   text-align: center;
+  font-size: 16px;
+  margin-bottom: 10px;
 }
 
-.small {
-  font-size: 12px;
-}
-
-h1 {
-  margin: 0;
-}
-
-h2 {
-  background: #e0e0e0;
-  padding: 4px;
-  font-size: 13px;
-  margin: 10px 0 4px 0;
-}
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 6px;
-}
-
-.table th,
-.table td {
+.secao {
   border: 1px solid #000;
-  padding: 4px;
-  font-size: 12px;
+  padding: 6px;
+  margin-bottom: 8px;
 }
 
-.gray {
-  background: #e0e0e0;
+.secao h2 {
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.subtitulo {
+  font-size: 10px;
+  margin-bottom: 4px;
+}
+
+.campo {
+  margin-bottom: 4px;
+}
+
+.campo label {
+  font-weight: bold;
+  font-size: 11px;
 }
 
 input, textarea {
   width: 100%;
-  border: none;
-  outline: none;
+  font-size: 11px;
+  box-sizing: border-box;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+}
+
+.vinculos textarea {
+  min-height: 60px;
+}
+
+.assinatura p {
+  font-size: 11px;
+}
+
+.linha-assinatura {
+  margin-top: 20px;
+  border-top: 1px solid #000;
+  width: 60%;
+  text-align: center;
+  font-size: 11px;
+}
+
+.acoes {
+  text-align: center;
+  margin-top: 10px;
+}
+
+button {
+  padding: 6px 12px;
   font-size: 12px;
 }
 
-textarea {
-  resize: none;
-}
-
-.textarea-curto {
-  min-height: 50px;
-}
-
-.textarea-medio {
-  min-height: 80px;
-}
-
-.assinatura {
-  margin-top: 30px;
-}
-
-.print-area {
-  text-align: center;
-  margin: 15px;
-}
-
-.print-area button {
-  padding: 8px 16px;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-/* IMPRESSÃO */
+/* ===== IMPRESSÃO ===== */
 @media print {
   body {
-    background: #fff;
+    background: none;
   }
 
-  .print-area {
+  .acoes {
     display: none;
   }
 
   .page {
     margin: 0;
-    padding: 15mm;
+    padding: 10mm;
   }
 }
-

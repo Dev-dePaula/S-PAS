@@ -1,147 +1,195 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>PAS - Plano de Atendimento Singular</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <title>PAS - Comunidade SOL (Checklist)</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
+        
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 8mm 12mm;
+            margin: 5px auto;
+            background: white;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* Cabeçalho */
+        .header { text-align: center; margin-bottom: 5px; }
+        .logo-sol { font-size: 24px; font-weight: bold; letter-spacing: 4px; margin: 0; }
+        .header-info { font-size: 8px; line-height: 1.1; margin: 2px 0; }
+
+        /* Títulos */
+        h1 { font-size: 13px; text-align: center; background: #eee; border: 1px solid #000; padding: 4px; margin: 5px 0; text-transform: uppercase; }
+        h2 { font-size: 11px; text-align: center; background: #ddd; border: 1px solid #000; padding: 2px; margin: 8px 0 0 0; text-transform: uppercase; }
+
+        /* Tabelas */
+        table { width: 100%; border-collapse: collapse; margin-bottom: 0; }
+        td, th { border: 1px solid #000; padding: 3px; font-size: 9px; vertical-align: middle; }
+        th { background: #f2f2f2; font-weight: bold; text-align: center; }
+        
+        /* Estilização dos Inputs */
+        input[type="text"] { width: 98%; border: none; font-size: 10px; outline: none; background: transparent; }
+        textarea { width: 100%; border: none; font-size: 10px; font-family: Arial; resize: none; outline: none; background: transparent; overflow: hidden; }
+        
+        /* Checkboxes centralizadas */
+        .check-col { text-align: center; width: 60px; }
+        input[type="checkbox"] { transform: scale(1.2); cursor: pointer; }
+
+        .label { font-weight: bold; font-size: 8px; text-transform: uppercase; display: block; margin-bottom: 1px; }
+        .section-desc { text-align: center; font-size: 8px; margin: 1px 0; display: block; }
+
+        /* Termo e Assinatura */
+        .termo-aceite { border: 1px solid #000; padding: 8px; margin-top: 10px; font-size: 11px; line-height: 1.4; }
+        .signature-area { margin-top: 30px; text-align: center; }
+        .signature-line { width: 350px; border-top: 1px solid #000; margin: 0 auto; }
+
+        .footer-num { position: absolute; bottom: 8mm; right: 12mm; font-size: 9px; }
+
+        @media print {
+            body { background: none; }
+            .page { margin: 0; box-shadow: none; border: none; page-break-after: always; }
+            #btn-print { display: none; }
+            input[type="checkbox"] { -webkit-print-color-adjust: exact; }
+        }
+
+        #btn-print { position: fixed; top: 15px; right: 15px; padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; z-index: 100; font-weight: bold; }
+    </style>
 </head>
 <body>
 
-<div class="print-area">
-  <button onclick="imprimir()">🖨️ Imprimir / Gerar PDF</button>
-</div>
+<button id="btn-print" onclick="window.print()">Imprimir PAS</button>
 
-<!-- PÁGINA 1 -->
 <div class="page">
+    <div class="header">
+        <p class="logo-sol">S ☺ L</p>
+        <p class="header-info">Comunidade Solidariedade - SOL<br>CNPJ: 03.936.151/0001-72 | Unidade Pública nº 9.883</p>
+    </div>
 
-  <header class="center">
-    <h1>SOL</h1>
-    <p>Comunidade Solidariedade - SOL</p>
-    <p class="small">PLANO DE ATENDIMENTO SINGULAR - PAS</p>
-  </header>
+    <h1>PLANO DE ATENDIMENTO SINGULAR - PAS</h1>
 
-  <table class="table">
-    <tr>
-      <td colspan="3"><strong>TÉCNICO RESPONSÁVEL:</strong> <input></td>
-      <td><strong>DATA:</strong> <input type="date"></td>
-    </tr>
-    <tr class="gray">
-      <td colspan="4"><strong>IDENTIFICAÇÃO DO ACOLHIDO</strong></td>
-    </tr>
-    <tr>
-      <td colspan="2"><strong>NOME:</strong> <input></td>
-      <td><strong>DATA DO ACOLHIMENTO:</strong> <input type="date"></td>
-      <td><strong>TEMPO PREVISTO:</strong> <input></td>
-    </tr>
-    <tr>
-      <td><strong>TEMPO DE ACOLHIMENTO:</strong> <input></td>
-      <td><strong>FASE:</strong> <input></td>
-      <td colspan="2"><strong>EDUCADOR DE REFERÊNCIA:</strong> <input></td>
-    </tr>
-    <tr>
-      <td colspan="4"><strong>CELULAR:</strong> <input></td>
-    </tr>
-  </table>
+    <table>
+        <tr>
+            <td colspan="2"><span class="label">TÉCNICO RESPONSÁVEL:</span><input type="text" value="KÁTIA FERNANDA RIBEIRO DA COSTA"></td>
+            <td width="25%"><span class="label">DATA:</span><input type="text" placeholder="  /  /  "></td>
+        </tr>
+        <tr><th colspan="3">IDENTIFICAÇÃO DO ACOLHIDO</th></tr>
+        <tr>
+            <td colspan="2"><span class="label">NOME:</span><input type="text"></td>
+            <td><span class="label">DATA ACOLHIMENTO:</span><input type="text"></td>
+        </tr>
+        <tr>
+            <td><span class="label">TEMPO DE ACOLHIMENTO:</span><input type="text"></td>
+            <td><span class="label">FASE:</span><input type="text"></td>
+            <td><span class="label">TEMPO PREVISTO:</span><input type="text"></td>
+        </tr>
+    </table>
 
-  <h2>PLANEJAMENTO DAS ATIVIDADES</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>ATIVIDADES</th>
-        <th>PARTICIPA</th>
-        <th>DISPENSADO</th>
-        <th>PERIODICIDADE</th>
-      </tr>
-    </thead>
-    <tbody id="atividades"></tbody>
-  </table>
+    <h2>PLANEJAMENTO DAS ATIVIDADES</h2>
+    <table>
+        <tr>
+            <th>ATIVIDADES</th>
+            <th class="check-col">PARTICIPA</th>
+            <th class="check-col">DISPENSADO</th>
+            <th>PERIODICIDADE</th>
+        </tr>
+        <tr><td>Atendimento Psicológico Individual</td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td><td><input type="text"></td></tr>
+        <tr><td>Atendimento Sócio Assistencial Individual</td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td><td><input type="text"></td></tr>
+        <tr><td>Atendimento Psicossocial Grupal</td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td><td><input type="text"></td></tr>
+        <tr><td>Acolhida e Escuta Terapêutica</td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td><td><input type="text"></td></tr>
+        <tr><td>Atividades de Conscientização (Dependência)</td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td><td><input type="text"></td></tr>
+        <tr><td>Prevenção da Recaída / THS</td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td><td><input type="text"></td></tr>
+        <tr><td>Grupos de Mútua-Ajuda (AA/NA)</td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td><td><input type="text"></td></tr>
+        <tr><td>Promoção de Autocuidado</td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td><td><input type="text"></td></tr>
+        <tr><td>Atividades Físicas e Desportivas</td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td><td><input type="text"></td></tr>
+        <tr><td>Atividades Recreativas e Culturais</td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td><td><input type="text"></td></tr>
+        <tr><td>Espiritualidade/Religiosidade</td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td><td><input type="text"></td></tr>
+    </table>
 
-  <h2>ENCAMINHAMENTOS E REFERENCIAMENTOS</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th></th>
-        <th>REALIZADO</th>
-        <th>PENDENTE</th>
-        <th>EM ANDAMENTO</th>
-      </tr>
-    </thead>
-    <tbody id="encaminhamentos"></tbody>
-  </table>
+    <h2>ENCAMINHAMENTOS E REFERENCIAMENTOS</h2>
+    <table>
+        <tr>
+            <th>ITEM</th>
+            <th class="check-col">REALIZADO</th>
+            <th class="check-col">PENDENTE</th>
+            <th class="check-col">EM ANDAM.</th>
+        </tr>
+        <tr><td>Referenciamento Saúde / Assistência</td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td></tr>
+        <tr><td>Rede de Saúde / Proteção Social</td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td></tr>
+        <tr><td>Cad Único / Renda</td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td></tr>
+        <tr><td>Confecção de Documentos</td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td></tr>
+        <tr><td>Referenciamento Família</td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td></tr>
+        <tr><td>Grupos de Apoio / Espaço Prevenir</td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td></tr>
+        <tr><td>Alfabetização / Profissionalização</td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td></tr>
+    </table>
 
-  <h2>VÍNCULOS FAMILIARES E/OU REDE DE APOIO</h2>
-  <textarea class="textarea-curto"></textarea>
-
+    <div style="margin-top: 5px;">
+        <span class="label">VÍNCULOS FAMILIARES E/OU REDE DE APOIO:</span>
+        <div style="border: 1px solid #000; padding: 4px; min-height: 60px;">
+            <textarea rows="4"></textarea>
+        </div>
+    </div>
+    <div class="footer-num">1</div>
 </div>
 
-<!-- PÁGINA 2 -->
 <div class="page">
+    <h2>ALTERAÇÃO MEDICAMENTOSA</h2>
+    <table>
+        <tr><th>MEDICAMENTO</th><th class="check-col">MANHÃ</th><th class="check-col">TARDE</th><th class="check-col">NOITE</th></tr>
+        <tr><td><input type="text"></td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td></tr>
+        <tr><td><input type="text"></td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td><td class="check-col"><input type="checkbox"></td></tr>
+    </table>
 
-  <h2>REQUERIMENTOS E SOLICITAÇÕES DO ACOLHIDO</h2>
-  <textarea class="textarea-curto"></textarea>
+    <h2>PERCEPÇÃO SOBRE AS ÁREAS DA VIDA</h2>
+    <div style="border: 1px solid #000; padding: 4px;">
+        <p style="margin: 2px 0;"><span class="label" style="display:inline">EMOCIONAL:</span><input type="text"></p>
+        <p style="margin: 2px 0;"><span class="label" style="display:inline">FÍSICA:</span><input type="text"></p>
+        <p style="margin: 2px 0;"><span class="label" style="display:inline">ESPIRITUAL:</span><input type="text"></p>
+        <p style="margin: 2px 0;"><span class="label" style="display:inline">PROFISSIONAL:</span><input type="text"></p>
+        <p style="margin: 2px 0;"><span class="label" style="display:inline">SOCIAL/LAZER:</span><input type="text"></p>
+    </div>
 
-  <h2>ALTERAÇÃO MEDICAMENTOSA</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>MEDICAMENTO</th>
-        <th>MANHÃ</th>
-        <th>TARDE</th>
-        <th>NOITE</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td><input></td><td><input></td><td><input></td><td><input></td></tr>
-      <tr><td><input></td><td><input></td><td><input></td><td><input></td></tr>
-    </tbody>
-  </table>
+    <h2>PROJETO DE VIDA / METAS</h2>
+    <div style="border: 1px solid #000; padding: 4px;">
+        <textarea rows="4" placeholder="1- &#10;2- &#10;3- "></textarea>
+    </div>
 
-  <strong>OBSERVAÇÕES:</strong>
-  <textarea class="textarea-curto"></textarea>
+    <h2>FATORES DE RISCO E PROTEÇÃO</h2>
+    <table>
+        <tr><th>FATORES DE RISCO</th><th>FATORES DE PROTEÇÃO</th></tr>
+        <tr>
+            <td><textarea rows="3"></textarea></td>
+            <td><textarea rows="3"></textarea></td>
+        </tr>
+    </table>
 
-  <h2>PERCEPÇÃO SOBRE AS ÁREAS DA VIDA</h2>
-  <textarea class="textarea-medio"></textarea>
+    <h2>CONSIDERAÇÕES DO PROFISSIONAL</h2>
+    <div style="border: 1px solid #000; padding: 4px;">
+        <textarea rows="3"></textarea>
+    </div>
 
-  <h2>PROJETO DE VIDA</h2>
-  <textarea class="textarea-medio"></textarea>
+    <div class="termo-aceite">
+        Eu, <input type="text" style="width: 250px; border-bottom: 1px solid #000;" placeholder="">, acolhido (a), nesta Comunidade Terapêutica, participei ativamente das respostas contidas no PAS. Afirmo que as informações fornecidas são verdadeiras e que estou de pleno acordo com a proposta terapêutica planejada.
+    </div>
 
-  <h2>FATORES DE RISCO E PROTEÇÃO</h2>
-  <table class="table">
-    <tr>
-      <th>FATORES DE RISCO</th>
-      <th>FATORES DE PROTEÇÃO</th>
-    </tr>
-    <tr>
-      <td><textarea class="textarea-curto"></textarea></td>
-      <td><textarea class="textarea-curto"></textarea></td>
-    </tr>
-  </table>
-
+    <div class="signature-area">
+        <div class="signature-line"></div>
+        <p class="label" style="font-size: 10px;">Assinatura do acolhido</p>
+    </div>
+    <div class="footer-num">2</div>
 </div>
 
-<!-- PÁGINA 3 -->
-<div class="page">
+<script>
+    document.querySelectorAll('textarea').forEach(el => {
+        el.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+    });
+</script>
 
-  <h2>CONSIDERAÇÕES DO PROFISSIONAL</h2>
-  <textarea class="textarea-medio"></textarea>
-
-  <div class="assinatura">
-    <p>
-      Eu, ________________________________, acolhido(a), nesta Comunidade Terapêutica,
-      participei ativamente das respostas contidas no PAS. Afirmo que as informações
-      fornecidas são verdadeiras e estou de pleno acordo com a proposta terapêutica planejada.
-    </p>
-
-    <br><br>
-
-    <p class="center">
-      _____________________________________<br>
-      Assinatura do acolhido
-    </p>
-  </div>
-
-</div>
-
-<script src="script.js"></script>
 </body>
 </html>
